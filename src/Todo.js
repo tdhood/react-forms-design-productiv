@@ -8,13 +8,14 @@ import React from "react";
  * { EditableTodo, TopTodo } -> Todo
  **/
 
-function Todo({ id, title, description, priority }) {
-  console.log("Todo", id, title, description, priority)
+function Todo({ todo }) {
+  console.log("Todo", todo)
+  console.log('Todo Title', todo.title)
 
   return (
       <div className="Todo">
-        <div><b>{title}</b> <small>{priority}</small></div>
-        <div><small>{description}</small></div>
+        <div><b>{todo.title}</b> <small>{todo.priority}</small></div>
+        <div><small>{todo.description}</small></div>
       </div>
   );
 }
