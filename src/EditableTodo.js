@@ -14,45 +14,49 @@ import TodoForm from "./TodoForm";
 
 function EditableTodo({ todo, update, remove }) {
   console.log("EditableToDo", todo, update, remove);
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
-  function toggleEdit() { 
+  function toggleEdit() {
     setIsEditing(!isEditing);
   }
 
   /** Call remove fn passed to this. */
-  function handleDelete() { 
+  function handleDelete() {
     remove(todo.id);
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) { 
-    toggleEdit()
+  function handleSave(formData) {
+    toggleEdit();
     update(formData);
   }
 
   return (
-      <div className="EditableTodo">
-        {isEditing === true && <TodoForm handleSave={handleSave}/>}
-        {isEditing === false && 
-                <div className="mb-3">
-                  <div className="float-end text-sm-end">
-                    <button
-                        className="EditableTodo-toggle btn-link btn btn-sm"
-                        onClick={toggleEdit}>
-                      Edit
-                    </button>
-                    <button
-                        className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                        onClick={handleDelete}>
-                      Del
-                    </button>
-                  </div>
-                  <Todo todo={todo}/>
-                </div>
-        }
-      </div>
+    <div className="EditableTodo">
+      {isEditing === true && (
+        <TodoForm initialFormData={todo} handleSave={handleSave} />
+      )}
+      {isEditing === false && (
+        <div className="mb-3">
+          <div className="float-end text-sm-end">
+            <button
+              className="EditableTodo-toggle btn-link btn btn-sm"
+              onClick={toggleEdit}
+            >
+              Edit
+            </button>
+            <button
+              className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+              onClick={handleDelete}
+            >
+              Del
+            </button>
+          </div>
+          <Todo todo={todo} />
+        </div>
+      )}
+    </div>
   );
 }
 

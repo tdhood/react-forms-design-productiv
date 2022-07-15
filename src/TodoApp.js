@@ -38,7 +38,6 @@ function TodoApp({ initialTodos }) {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   }
 
-  // FIXME: remove entirely if no Top Todo
   return (
     <main className="TodoApp">
       <div className="row">
