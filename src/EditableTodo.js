@@ -13,14 +13,11 @@ import TodoForm from "./TodoForm";
  */
 
 function EditableTodo({ todo, update, remove }) {
-  // TODO: move console log below state, can then console log state
-  console.log("EditableToDo", todo, update, remove);
   const [isEditing, setIsEditing] = useState(false);
-
+  console.log("EditableToDo", todo, isEditing);
   /** Toggle if this is being edited */
   function toggleEdit() {
-    // FIXME: use callback pattern to set state
-    setIsEditing(!isEditing);
+    setIsEditing(edit => !edit);
   }
 
   /** Call remove fn passed to this. */
@@ -28,13 +25,10 @@ function EditableTodo({ todo, update, remove }) {
     remove(todo.id);
   }
 
-  /** Edit form saved; toggle isEditing and update in ancestor. */
-  // FIXME: formData is no longer form data at this point. updatedTodo
-  // more clarity for someone reading code
-  function handleSave(formData) {
-    // FIXME: set state isEditing: false; clearer intent
-    toggleEdit();
-    update(formData);
+  /** Edit form saved; set isEditing state to false and update in ancestor. */
+  function handleSave(updatedTodo) {
+    setIsEditing(false);
+    update(updatedTodo);
   }
 
   return (
