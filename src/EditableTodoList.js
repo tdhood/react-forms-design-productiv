@@ -13,6 +13,7 @@ import EditableTodo from "./EditableTodo";
 
 function EditableTodoList({ todos, update, remove }) {
   console.log("EditableTodoList", todos)
+  // TODO: indent line 20 / fix line length
   return (
       <div>
         {todos.map(todo =>
