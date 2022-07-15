@@ -8,33 +8,29 @@ import { render } from "@testing-library/react";
 
 let renderedApp;
 const INITIAL_TODOS = [
-    {
-      id: 1,
-      title: "Code!",
-      description: "Write some code",
-      priority: 2,
-    },
-    {
-      id: 2,
-      title: "Make dinner",
-      description: "Cook something healthy",
-      priority: 1,
-    },
-    {
-      id: 3,
-      title: "Go to bed",
-      description: "In bed by 11:15",
-      priority: 3,
-    },
-  ]
+  {
+    id: 1,
+    title: "Code!",
+    description: "Write some code",
+    priority: 2,
+  },
+  {
+    id: 2,
+    title: "Make dinner",
+    description: "Cook something healthy",
+    priority: 1,
+  },
+  {
+    id: 3,
+    title: "Go to bed",
+    description: "In bed by 11:15",
+    priority: 3,
+  },
+];
 
 beforeEach(function () {
-  const { container } = render(
-    <TodoApp
-      initialTodos={INITIAL_TODOS}
-    />
-  );
-  renderedApp = container;
+  const { container } = render(<TodoApp initialTodos={INITIAL_TODOS} />);
+  renderedAppContainer = container;
 });
 
 describe("TodoApp renders successfullly", function () {
@@ -43,17 +39,23 @@ describe("TodoApp renders successfullly", function () {
   });
 
   it("matches snapshot", function () {
-    // const { container } = render(<TodoApp />);
-    expect(renderedApp).toMatchSnapshot();
+    expect(renderedAppContainer).toMatchSnapshot();
   });
 
-  it("renders full list of todos", function () {
-    // const { container, debug } = render(<TodoApp initialTodos={INITIAL_TODOS}/>);
-    expect(renderedApp.querySelectorAll(".Todo").length).toEqual(4);
-    // expect(renderedApp.container.querySelectorAll(".Todo").length).toEqual(3);
-  })
+  it("renders full list of todos plus an extra for TopTodo(pass in 3, expect 4)", function () {
+    expect(renderedAppContainer.querySelectorAll(".Todo").length).toEqual(4);
+  });
 });
 
+//FIXME: still working on
 // describe("create todos", function () {
-//     it("renders")
+//     it("add created todo to initial list", function () {
+//         const newTodo = {
+//             id: 4,
+//             title: "test",
+//             description: "testing",
+//             priority: 2,
+//           }
+//         expect(create(newTodo))
+//     })
 // })
